@@ -75,10 +75,10 @@ install pl/*.1 $RPM_BUILD_ROOT%{_mandir}/pl/man1
 gzip -9nf NEWS README
 
 %post
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+%fix_info_dir
 
 %postun
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+%fix_info_dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
