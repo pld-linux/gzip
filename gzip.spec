@@ -5,15 +5,15 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	15
+Release:	16
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
 Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://ftp.gnu.org/pub/gnu/gzip/%{name}-%{version}.tar.gz
+Source1:	gzip-non-english-man-pages.tar.bz2
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
-Patch2:		%{name}-plman.patch
 Patch3:		%{name}-zforce.patch
 Patch4:		%{name}-DESTDIR.patch
 Patch5:		%{name}-stderr.patch
@@ -48,7 +48,6 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
@@ -65,7 +64,7 @@ automake -a -i
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pl/man1}
+install -d $RPM_BUILD_ROOT/bin
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
@@ -77,7 +76,7 @@ ln -sf gzip $RPM_BUILD_ROOT/bin/zcat
 ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
-install pl/*.1 $RPM_BUILD_ROOT%{_mandir}/pl/man1
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 gzip -9nf NEWS README
 
@@ -96,5 +95,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
+%lang(da) %{_mandir}/da/man1/*
+%lang(de) %{_mandir}/de/man1/*
+%lang(es) %{_mandir}/es/man1/*
+%lang(fi) %{_mandir}/fi/man1/*
+%lang(fr) %{_mandir}/fr/man1/*
+%lang(hu) %{_mandir}/hu/man1/*
+%lang(id) %{_mandir}/id/man1/*
+%lang(it) %{_mandir}/it/man1/*
+%lang(ja) %{_mandir}/ja/man1/*
+%lang(ko) %{_mandir}/ko/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 %{_infodir}/gzip.info*
