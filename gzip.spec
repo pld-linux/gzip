@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	14
+Release:	15
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
