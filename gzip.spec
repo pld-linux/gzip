@@ -9,7 +9,7 @@ Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -24,6 +24,7 @@ Patch1:		%{name}-info.patch
 Patch2:		%{name}-stderr.patch
 Patch3:		%{name}-zgreppipe.patch
 Patch4:		%{name}-noppid.patch
+Patch5:		%{name}-segfault.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
@@ -72,6 +73,9 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch2 -p1
 %patch3 -p0
 %patch4 -p1
+%ifarch alpha
+%patch5 -p1
+%endif
 
 %build
 rm -f missing
