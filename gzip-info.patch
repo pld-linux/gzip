@@ -1,0 +1,23 @@
+diff -Nru gzip-1.2.4/gzip.texi gzip-1.2.4.new/gzip.texi
+--- gzip-1.2.4/gzip.texi	Wed Aug 18 22:42:50 1993
++++ gzip-1.2.4.new/gzip.texi	Sat Jan  2 21:36:12 1999
+@@ -59,11 +59,19 @@
+ by the Foundation.
+ @end titlepage
+ 
++@ifinfo
++@dircategory File utilities:
++@direntry
++* gzip: (gzip)				The GNU compression utility
++@end direntry
++@end ifinfo
++
+ @node Top, , , (dir)
+ 
+ @ifinfo
+ This file documents the @code{gzip} command to compress files.
+ @end ifinfo
++@top gzip
+ 
+ @menu
+ * Copying::		How you can copy and share @code{gzip}.
