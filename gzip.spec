@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.2.4
-Release:	16
+Release:	17
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
@@ -100,7 +100,7 @@ gzip -9nf NEWS README \
 /sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
 
 %preun
-if [ $1 = 0 ]; then
+if [ "$1" = "0" ]; then
 	/sbin/install-info --delete /usr/info/gzip.info.gz /etc/info-dir
 fi
 
@@ -110,13 +110,17 @@ fi
 
 %attr(755,root,root) /bin/*
 %attr(755,root,root) /usr/bin/*
-%attr(644,root,root) /usr/man/man1/*
 
+/usr/man/man1/*
 %lang(pl) /usr/man/pl/man1/*
 
 /usr/info/gzip.info*
 
 %changelog
+* Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.4-17]
+- recompiles on new rpm.
+
 * Sat Jan 02 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2.4-15]
 - standarized {un}registering info pages; second try (added
