@@ -28,23 +28,23 @@
  
  tail=""
  IFS="${IFS= 	}"; saveifs="$IFS"; IFS="${IFS}:"
---- gzip-1.3/zdiff.in.mktemp	Tue Jun  5 11:41:15 2001
-+++ gzip-1.3/zdiff.in	Tue Jun  5 12:22:06 2001
+--- gzip-1.3.5/zdiff.in.mktemp	Tue Jun  5 11:41:15 2001
++++ gzip-1.3.5/zdiff.in	Tue Jun  5 12:22:06 2001
 @@ -47,11 +47,12 @@
  	        *[-.]gz* | *[-.][zZ] | *.t[ga]z)
  			F=`echo "$2" | sed 's|.*/||;s|[-.][zZtga]*||'`
  			set -C
--			trap 'rm -f /tmp/"$F".$$; exit 2' 1 2 13 15 0
+-			trap 'rm -f /tmp/"$F".$$; exit 2' HUP INT PIPE TERM 0
 -			gzip -cdfq "$2" > /tmp/"$F".$$ || exit
 -                        gzip -cdfq "$1" | $comp $OPTIONS - /tmp/"$F".$$
 +			tmpfile=`mktemp -u ${TMPDIR:-/tmp}/gz.XXXXXX` || exit 1
-+			trap 'rm -f $tmpfile; exit 2' 1 2 13 15 0
++			trap 'rm -f $tmpfile; exit 2' HUP INT PIPE TERM 0
 +			gzip -cdfq "$2" > $tmpfile || exit
 +                        gzip -cdfq "$1" | $comp $OPTIONS - $tmpfile
                          STAT="$?"
 -			/bin/rm -f /tmp/"$F".$$ || STAT=2
 +			/bin/rm -f $tmpfile || STAT=2
- 			trap 1 2 13 15 0
+ 			trap - HUP INT PIPE TERM 0
  			exit $STAT;;
  
 --- gzip-1.3/znew.in.mktemp	Tue Jun  5 11:41:24 2001

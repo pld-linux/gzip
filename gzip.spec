@@ -6,7 +6,7 @@ Summary(ru):	ðÒÏÇÒÁÍÍÁ ÓÖÁÔÉÑ ÄÁÎÎÙÈ GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
-Version:	1.3.3
+Version:	1.3.5
 Release:	1
 License:	GPL
 Group:		Applications/Archiving
@@ -17,15 +17,12 @@ Source0:	ftp://alpha.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
-Patch2:		%{name}-zforce.patch
-Patch3:		%{name}-stderr.patch
-Patch4:		%{name}-zgreppipe.patch
-Patch5:		%{name}-noppid.patch
-Patch6:		%{name}-cpp_macros.patch
-Patch7:		%{name}-ac.patch
+Patch2:		%{name}-stderr.patch
+Patch3:		%{name}-zgreppipe.patch
+Patch4:		%{name}-noppid.patch
 URL:		http://www.gnu.org/software/gzip/
-BuildRequires:	autoconf >= 2.53
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.54
+BuildRequires:	automake >= 1.7
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -61,15 +58,12 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p0
-%patch5 -p1
-%patch6 -p1
-%patch7 -p0
+%patch3 -p0
+%patch4 -p1
 
 %build
 rm -f missing
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
 %configure
@@ -102,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NEWS README
+%doc AUTHORS ChangeLog NEWS README* THANKS TODO
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*

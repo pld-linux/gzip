@@ -1,6 +1,6 @@
-diff -ur gzip-1.3/gzexe.in gzip-1.3-/gzexe.in
---- gzip-1.3/gzexe.in	Fri Sep 18 02:43:06 1998
-+++ gzip-1.3-/gzexe.in	Sat Jun  9 16:05:41 2001
+diff -ur gzip-1.3.5.orig/gzexe.in gzip-1.3.5/gzexe.in
+--- gzip-1.3.5.orig/gzexe.in	Fri Sep 18 02:43:06 1998
++++ gzip-1.3.5/gzexe.in	Sat Jun  9 16:05:41 2001
 @@ -91,21 +91,21 @@
      sed 1q $0 > $tmp
      sed "s|^if tail|if $tail|" >> $tmp <<'EOF'
@@ -8,9 +8,9 @@ diff -ur gzip-1.3/gzexe.in gzip-1.3-/gzexe.in
 -set -C
  umask=`umask`
  umask 77
--if tail +$skip $0 | "BINDIR"/gzip -cd > /tmp/gztmp$$; then
+-if tail +$skip "$0" | "BINDIR"/gzip -cd > /tmp/gztmp$$; then
 +tmpfile=`mktemp ${TMPDIR:-/tmp}/gz$$.XXXXXX` || { echo 'cannot create temporary file' >&2; exit 1; }
-+if tail +$skip $0 | "/bin"/gzip -cd > $tmpfile; then
++if tail +$skip "$0" | "/bin"/gzip -cd > $tmpfile; then
    umask $umask
 -  /bin/chmod 700 /tmp/gztmp$$
 +  /bin/chmod 700 $tmpfile
