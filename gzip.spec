@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	16
+Release:	17
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -95,7 +95,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
-%lang(da) %{_mandir}/da/man1/*
 %lang(de) %{_mandir}/de/man1/*
 %lang(es) %{_mandir}/es/man1/*
 %lang(fi) %{_mandir}/fi/man1/*
