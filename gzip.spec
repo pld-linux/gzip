@@ -57,7 +57,7 @@ dosya sýkýþtýrma ve açma aracýdýr.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 automake -a -i -c -f
 %configure
 %{__make}
