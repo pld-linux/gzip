@@ -13,10 +13,10 @@ Source0:	ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
 Source1:	gzip.1.pl
 Source2:	zcmp.1.pl
 Source3:	zdiff.1.pl
-Source4:	zforce.1.pl
-Source5:	zgrep.1.pl
-Source6:	zmore.1.pl
-Source7:	znew.1.pl
+#Source4:	zforce.1.pl
+#Source5:	zgrep.1.pl
+#Source6:	zmore.1.pl
+#Source7:	znew.1.pl
 Patch0:		gzip-basename.patch
 Patch1:		gzip-gzexe.patch
 Patch2:		gzip-mktemp.patch
@@ -85,10 +85,10 @@ EOF
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/gzip.1
 install %{SOURCE2} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zcmp.1
 install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zdiff.1
-install %{SOURCE4} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zforce.1
-install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zgrep.1
-install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zmore.1
-install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/pl/man1/znew.1
+#install %{SOURCE4} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zforce.1
+#install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zgrep.1
+#install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zmore.1
+#install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/pl/man1/znew.1
 
 gzip -9nf NEWS README \
 	$RPM_BUILD_ROOT/usr/share/{info/gzip.info*,man/{man1/*,pl/man1/*}}
