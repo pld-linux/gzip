@@ -104,33 +104,3 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_mandir}/pl/man1/*
 
 %{_infodir}/gzip.info*
-
-%changelog
-* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
-  [1.2.4-18]
-- spec cleanup
-
-* Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2.4-17]
-- recompiles on new rpm.
-
-* Sat Jan 02 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2.4-15]
-- standarized {un}registering info pages; second try (added
-  gzip-info.patch).
-
-* Sat Dec 12 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2.4-14]
-- added gzipping man pages,
-- added using LDFLAGS="-s" to ./configure enviroment,
-- added some pl man pages: gzip(1), zcmp(1), zdiff(1), zforce(1),
-  zgrep(1), zmore(1), znew(1),
-- standarized {un}registering info pages.
-
-* Thu Sep 24 1998 Andrzej Nakonieczny <dzemik@shadow.eu.org>
-  [1.2.4-13]
-- added pl translation,
-- changed buildroot for /tmp/%{name}-%{version}-root,
-- added %%{name} and %%{version} macros in Source.
-- added %defattr support,
-- start at RH spec.
