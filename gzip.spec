@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	18
+Release:	19
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -20,6 +20,7 @@ Patch5:		%{name}-stderr.patch
 Patch6:		%{name}-zgreppipe.patch
 Patch7:		%{name}-noppid.patch
 Patch8:		%{name}-ac_fix.patch
+Patch9:		%{name}-cpp_macros.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 Requires:	mktemp
@@ -54,6 +55,7 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 aclocal
