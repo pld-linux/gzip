@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	13
+Release:	14
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -69,12 +69,6 @@ ln -sf gzip $RPM_BUILD_ROOT/bin/gunzip
 ln -sf gzip $RPM_BUILD_ROOT/bin/zcat
 ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
-
-for i in zcmp zdiff zforce zgrep zmore znew ; do
-	sed -e "s|$RPM_BUILD_ROOT||g" < $RPM_BUILD_ROOT%{_bindir}/$i > $RPM_BUILD_ROOT%{_bindir}/.$i
-	rm -f $RPM_BUILD_ROOT%{_bindir}/$i
-	mv -f $RPM_BUILD_ROOT%{_bindir}/.$i $RPM_BUILD_ROOT%{_bindir}/$i
-done
 
 install pl/*.1 $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
