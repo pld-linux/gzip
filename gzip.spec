@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -47,7 +47,8 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch4 -p1
 
 %build
-automake
+aclocal
+automake -a -i
 %configure
 %{__make}
 
