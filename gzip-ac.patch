@@ -1,0 +1,11 @@
+--- configure.in~	Sat Mar  9 01:51:27 2002
++++ configure.in	Sat Mar 16 20:37:23 2002
+@@ -24,7 +24,7 @@
+ AC_PREREQ(2.53)
+ AC_PROG_CC
+ AC_PROG_LN_S
+-AC_PROG_SHELL
++#AC_PROG_SHELL
+ AC_OBJEXT
+ AC_AIX
+ AC_MINIX

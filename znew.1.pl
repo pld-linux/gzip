@@ -15,24 +15,24 @@ rozszerzenie nazwy tego pliku na .Z, a nastêpnie u¿yj programu znew.
 .SH OPCJE
 .TP
 .B \-f
-Wymusza konwersjê z formatu .Z do formatu .gz nawet, je¿eli plik .gz ju¿
+Wymu¶ konwersjê z formatu .Z do formatu .gz nawet, je¿eli plik .gz ju¿
 istnieje
 .TP
 .B \-t
-Testuje nowy plik przed usuniêciem orygina³u.
+Przetestuj nowy plik przed usuniêciem orygina³u.
 .TP
 .B \-v
-Pe³na informacja. Wy¶wietla nazwê i procent, o jaki zosta³ zredukowany
+Pe³na informacja. Wy¶wietl nazwê i procent, o jaki zosta³ zredukowany
 rozmiar ka¿dego pliku.
 .TP
 .B \-9
-U¿ywa najwolniejszej (lecz najbardziej wydajnej) kompresji.
+U¿yj najwolniejszej (lecz najbardziej wydajnej) kompresji.
 .TP
 .B \-P
-U¿ywa przetwarzania potokowego, by zredukowaæ zu¿ycie przestrzeni dysku.
+U¿yj przetwarzania potokowego, by zredukowaæ zu¿ycie przestrzeni dysku.
 .TP
 .B \-K
-Nie usuwa pliku .Z, je¿eli jest mniejszy od nowoutworzonego pliku .gz
+Nie usuwaj pliku .Z, je¿eli jest mniejszy od nowo utworzonego pliku .gz
 .SH "ZOBACZ TAK¯E"
 gzip(1), zmore(1), zdiff(1), zgrep(1), zforce(1), gzexe(1), compress(1)
 .SH B£ÊDY
