@@ -68,9 +68,10 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch7 -p0
 
 %build
-aclocal
+rm -f missing
+%{__aclocal}
 %{__autoconf}
-%{__automake} -i
+%{__automake}
 %configure
 %{__make}
 
