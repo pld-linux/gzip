@@ -5,9 +5,10 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.2.4
-Release:	19
-Copyright:	GPL
+Release:	20
+License:	GPL
 Group:		Utilities/Archiving
+Group(pl):	Narzêdzia/Archiwizacja
 Group(pl):	Narzêdzia/Archiwizacja
 Source:		ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
 Patch0:		gzip-basename.patch
@@ -20,12 +21,11 @@ Requires:	mktemp
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
-This is the popular GNU file compression and decompression
-program, gzip.  
+This is the popular GNU file compression and decompression program, gzip.
 
 %description -l de
-Dies ist das beliebte GNU-Dateikompressions- und Dekompressionsprogramm, 
-gzip. 
+Dies ist das beliebte GNU-Dateikompressions- und Dekompressionsprogramm,
+gzip.
 
 %description -l fr
 Programme de compression et de décompression gzip de GNU
@@ -47,7 +47,7 @@ sýkýþtýrma ve açma aracýdýr.
 
 %build
 %configure
-make
+make LDFLAGS="-s"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -59,7 +59,7 @@ make install prefix=$RPM_BUILD_ROOT%{_prefix} \
 	infodir=$RPM_BUILD_ROOT/%{_infodir}
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin/gzip
-rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT/usr/bin/zcat
+rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
 
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/gunzip
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/zcat
@@ -67,9 +67,9 @@ ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
 for i in zcmp zdiff zforce zgrep zmore znew ; do
-	sed -e "s|$RPM_BUILD_ROOT||g" < $RPM_BUILD_ROOT%{_bindir}/$i > $RPM_BUILD_ROOT/usr/bin/.$i
+	sed -e "s|$RPM_BUILD_ROOT||g" < $RPM_BUILD_ROOT%{_bindir}/$i > $RPM_BUILD_ROOT%{_bindir}/.$i
 	rm -f $RPM_BUILD_ROOT%{_bindir}/$i
-	mv $RPM_BUILD_ROOT%{_bindir}/.$i $RPM_BUILD_ROOT/usr/bin/$i
+	mv $RPM_BUILD_ROOT%{_bindir}/.$i $RPM_BUILD_ROOT%{_bindir}/$i
 done
 
 cat > $RPM_BUILD_ROOT%{_bindir}/zless <<EOF
