@@ -9,7 +9,6 @@ Release:	20
 License:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
-Group(pl):	Narzêdzia/Archiwizacja
 Source:		ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
 Patch0:		gzip-basename.patch
 Patch1:		gzip-gzexe.patch
