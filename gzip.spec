@@ -5,7 +5,7 @@ Summary(pl): GNU gzip
 Summary(tr): GNU gzip dosya sýkýþtýrma aracý
 Name:        gzip
 Version:     1.2.4
-Release:     14
+Release:     15
 Copyright:   GPL
 Group:       Utilities/Archiving
 Source0:     ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
@@ -19,6 +19,7 @@ Source7:     znew.1.pl
 Patch0:      gzip-basename.patch
 Patch1:      gzip-gzexe.patch
 Patch2:      gzip-mktemp.patch
+Patch3:      gzip-info.patch
 Prereq:      /sbin/install-info
 Requires:    mktemp
 Buildroot:   /tmp/%{name}-%{version}-root
@@ -46,6 +47,7 @@ sýkýþtýrma ve açma aracýdýr.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
@@ -91,12 +93,10 @@ install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
 gzip -9nf $RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
 
 %post
-/sbin/install-info /usr/info/gzip.info.gz /etc/info-dir \
---entry \
-"* gzip: (gzip).                                 The GNU compression utility."
+/sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
 
 %preun
-if [ $1 = 1 ]; then
+if [ $1 = 0 ]; then
 	/sbin/install-info --delete /usr/info/gzip.info.gz /etc/info-dir
 fi
 
@@ -110,6 +110,11 @@ fi
 /usr/info/gzip.info*
 
 %changelog
+* Sat Jan 02 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.4-15]
+- standarized {un}registering info pages; second try (added
+  gzip-info.patch).
+
 * Sat Dec 12 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2.4-14]
 - added gzipping man pages,
