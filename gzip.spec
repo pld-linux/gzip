@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.2.4
-Release:	17
+Release:	18
 Copyright:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
@@ -51,16 +51,17 @@ sýkýþtýrma ve açma aracýdýr.
 %patch3 -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=/usr
+%configure
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{bin,usr/man/pl/man1}
+install -d $RPM_BUILD_ROOT/{bin,usr/share/man/pl/man1}
 
-make install prefix=$RPM_BUILD_ROOT/usr
+make install prefix=$RPM_BUILD_ROOT/usr \
+	bindir=$RPM_BUILD_ROOT/%{_bindir} \
+	mandir=$RPM_BUILD_ROOT/%{_mandir}/man1 \
+	infodir=$RPM_BUILD_ROOT/%{_infodir}
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin/gzip
 rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT/usr/bin/zcat
@@ -90,7 +91,7 @@ install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zmore.1
 install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/pl/man1/znew.1
 
 gzip -9nf NEWS README \
-	$RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
+	$RPM_BUILD_ROOT/usr/share/{info/gzip.info*,man/{man1/*,pl/man1/*}}
 
 %post
 /sbin/install-info %{_infodir}/gzip.info.gz /etc/info-dir
@@ -116,6 +117,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/gzip.info*
 
 %changelog
+* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
+  [1.2.4-18]
+- spec cleanup
+
 * Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2.4-17]
 - recompiles on new rpm.
