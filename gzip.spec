@@ -76,8 +76,6 @@ ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-gzip -9nf NEWS README
-
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
@@ -89,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc NEWS README
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
