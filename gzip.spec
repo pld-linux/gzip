@@ -51,9 +51,9 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{bin,usr/share/man/pl/man1}
+install -d $RPM_BUILD_ROOT/{bin,%{_mandir}/pl/man1}
 
-make install prefix=$RPM_BUILD_ROOT/usr \
+make install prefix=$RPM_BUILD_ROOT%{_prefix} \
 	bindir=$RPM_BUILD_ROOT/%{_bindir} \
 	mandir=$RPM_BUILD_ROOT/%{_mandir}/man1 \
 	infodir=$RPM_BUILD_ROOT/%{_infodir}
@@ -80,7 +80,7 @@ EOF
 install pl/*.1 $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
 gzip -9nf NEWS README \
-	$RPM_BUILD_ROOT/usr/share/{info/gzip.info*,man/{man1/*,pl/man1/*}}
+	$RPM_BUILD_ROOT{%{_infodir}/gzip.info*,%{_mandir}/{man1/*,pl/man1/*}}
 
 %post
 /sbin/install-info %{_infodir}/gzip.info.gz /etc/info-dir
