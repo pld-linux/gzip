@@ -62,23 +62,23 @@ install -d $RPM_BUILD_ROOT/{bin,usr/man/pl/man1}
 
 make install prefix=$RPM_BUILD_ROOT/usr
 
-mv -f $RPM_BUILD_ROOT/usr/bin/gzip $RPM_BUILD_ROOT/bin/gzip
-rm -f $RPM_BUILD_ROOT/usr/bin/gunzip $RPM_BUILD_ROOT/usr/bin/zcat
+mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin/gzip
+rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT/usr/bin/zcat
 
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/gunzip
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/zcat
-ln -sf /bin/gzip $RPM_BUILD_ROOT/usr/bin/gzip
-ln -sf /bin/gunzip $RPM_BUILD_ROOT/usr/bin/gunzip
+ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
+ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
 for i in zcmp zdiff zforce zgrep zmore znew ; do
-	sed -e "s|$RPM_BUILD_ROOT||g" < $RPM_BUILD_ROOT/usr/bin/$i > $RPM_BUILD_ROOT/usr/bin/.$i
-	rm -f $RPM_BUILD_ROOT/usr/bin/$i
-	mv $RPM_BUILD_ROOT/usr/bin/.$i $RPM_BUILD_ROOT/usr/bin/$i
+	sed -e "s|$RPM_BUILD_ROOT||g" < $RPM_BUILD_ROOT%{_bindir}/$i > $RPM_BUILD_ROOT/usr/bin/.$i
+	rm -f $RPM_BUILD_ROOT%{_bindir}/$i
+	mv $RPM_BUILD_ROOT%{_bindir}/.$i $RPM_BUILD_ROOT/usr/bin/$i
 done
 
-cat > $RPM_BUILD_ROOT/usr/bin/zless <<EOF
+cat > $RPM_BUILD_ROOT%{_bindir}/zless <<EOF
 #!/bin/sh
-/bin/zcat "\$@" | /usr/bin/less
+/bin/zcat "\$@" | %{_bindir}/less
 EOF
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/gzip.1
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc {NEWS,README}.gz
 
 %attr(755,root,root) /bin/*
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
