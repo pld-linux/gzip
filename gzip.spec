@@ -17,7 +17,7 @@ Patch3:		gzip-info.patch
 Patch4:		gzip-plman.patch
 Prereq:		/usr/sbin/fix-info-dir
 Requires:	mktemp
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This is the popular GNU file compression and decompression program, gzip.
