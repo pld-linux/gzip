@@ -120,5 +120,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ja) %{_mandir}/ja/man1/*
 %lang(ko) %{_mandir}/ko/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
-%lang(pt) %{_mandir}/pl/man1/*
+%lang(pt) %{_mandir}/pt/man1/*
 %{_infodir}/gzip.info*
