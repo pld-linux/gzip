@@ -92,9 +92,6 @@ install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
 gzip -9nf NEWS README \
 	$RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post
 /sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
 
@@ -102,6 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 if [ "$1" = "0" ]; then
 	/sbin/install-info --delete /usr/info/gzip.info.gz /etc/info-dir
 fi
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
