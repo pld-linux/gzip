@@ -19,6 +19,9 @@ Patch4:		%{name}-DESTDIR.patch
 Patch5:		%{name}-stderr.patch
 Patch6:		%{name}-zgreppipe.patch
 Patch7:		%{name}-noppid.patch
+Patch8:		%{name}-ac_fix.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -51,9 +54,11 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 aclocal
+autoconf
 automake -a -i
 %configure
 %{__make}
