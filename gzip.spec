@@ -17,7 +17,8 @@ Patch3:		%{name}-stderr.patch
 Patch4:		%{name}-zgreppipe.patch
 Patch5:		%{name}-noppid.patch
 Patch6:		%{name}-cpp_macros.patch
-BuildRequires:	autoconf
+Patch7:         %{name}-ac.patch
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,6 +51,7 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch4 -p0
 %patch5 -p1
 %patch6 -p1
+%patch7 -p0
 
 %build
 aclocal
