@@ -1,7 +1,9 @@
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
+Summary(es):	Compresor de archivos gzip GNU
 Summary(fr):	GNU gzip pour la compression de fichiers
 Summary(pl):	GNU gzip
+Summary(pt_BR):	Compressor de arquivos gzip GNU
 Summary(ru):	Программа сжатия данных GNU gzip
 Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
 Summary(uk):	Програма компрес╕╖ даних GNU gzip
@@ -34,12 +36,20 @@ gzip.
 Dies ist das beliebte GNU-Dateikompressions- und
 Dekompressionsprogramm, gzip.
 
+%description -l es
+Este es el popular programa GNU de compresiСn y descompresiСn de
+archivos, gzip.
+
 %description -l fr
 Programme de compression et de dИcompression gzip de GNU
 
 %description -l pl
 GNU gzip to popularny program sЁu©╠cy do kompresji i dekompresji
 danych.
+
+%description -l pt_BR
+Este И o popular programa GNU de compressЦo e descompressЦo de
+arquivos, gzip.
 
 %description -l ru
 Пакет gzip содержит популярную программу сжатия данных GNU gzip.
@@ -110,4 +120,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ja) %{_mandir}/ja/man1/*
 %lang(ko) %{_mandir}/ko/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
+%lang(pt) %{_mandir}/pl/man1/*
 %{_infodir}/gzip.info*
