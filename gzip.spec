@@ -87,9 +87,10 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/bin
+install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
 rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
@@ -100,7 +101,6 @@ ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-mkdir $RPM_BUILD_ROOT%{_mandir}/pt/man1/
 mv $RPM_BUILD_ROOT%{_mandir}/pt/*.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1
 
 %clean
