@@ -5,13 +5,20 @@ Summary(pl): GNU gzip
 Summary(tr): GNU gzip dosya sýkýþtýrma aracý
 Name:        gzip
 Version:     1.2.4
-Release:     13
+Release:     14
 Copyright:   GPL
 Group:       Utilities/Archiving
-Source:      ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
-Patch:       %{name}-1.2.4-basename.patch
-Patch1:      %{name}-1.2.4-gzexe.patch
-Patch2:      %{name}-1.2.4-mktemp.patch
+Source0:     ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
+Source1:     gzip.1.pl
+Source2:     zcmp.1.pl
+Source3:     zdiff.1.pl
+Source4:     zforce.1.pl
+Source5:     zgrep.1.pl
+Source6:     zmore.1.pl
+Source7:     znew.1.pl
+Patch0:      gzip-basename.patch
+Patch1:      gzip-gzexe.patch
+Patch2:      gzip-mktemp.patch
 Prereq:      /sbin/install-info
 Requires:    mktemp
 Buildroot:   /tmp/%{name}-%{version}-root
@@ -36,23 +43,24 @@ sýkýþtýrma ve açma aracýdýr.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr
-make 
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
+	--prefix=/usr
+make
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{bin,usr/man}
+install -d $RPM_BUILD_ROOT/{bin,usr/man/pl/man1}
 
 make install prefix=$RPM_BUILD_ROOT/usr
-strip $RPM_BUILD_ROOT/usr/bin/gzip
 
 mv -f $RPM_BUILD_ROOT/usr/bin/gzip $RPM_BUILD_ROOT/bin/gzip
 rm -f $RPM_BUILD_ROOT/usr/bin/gunzip $RPM_BUILD_ROOT/usr/bin/zcat
@@ -60,7 +68,6 @@ ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/gunzip
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/zcat
 ln -sf /bin/gzip $RPM_BUILD_ROOT/usr/bin/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT/usr/bin/gunzip
-gzip -9nf $RPM_BUILD_ROOT/usr/info/gzip.info*
 
 for i in zcmp zdiff zforce zgrep zmore znew ; do
 	sed -e "s|$RPM_BUILD_ROOT||g" < $RPM_BUILD_ROOT/usr/bin/$i > $RPM_BUILD_ROOT/usr/bin/.$i
@@ -73,11 +80,29 @@ cat > $RPM_BUILD_ROOT/usr/bin/zless <<EOF
 /bin/zcat "\$@" | /usr/bin/less
 EOF
 
+install %{SOURCE1} $RPM_BUILD_ROOT/usr/man/pl/man1/gzip.1
+install %{SOURCE2} $RPM_BUILD_ROOT/usr/man/pl/man1/zcmp.1
+install %{SOURCE3} $RPM_BUILD_ROOT/usr/man/pl/man1/zdiff.1
+install %{SOURCE4} $RPM_BUILD_ROOT/usr/man/pl/man1/zforce.1
+install %{SOURCE5} $RPM_BUILD_ROOT/usr/man/pl/man1/zgrep.1
+install %{SOURCE6} $RPM_BUILD_ROOT/usr/man/pl/man1/zmore.1
+install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
+
+gzip -9nf $RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
+
+%pre
+if [ $1 = 1 ]; then
+        /sbin/install-info --delete /usr/info/gzip.info.gz \
+	--info-dir /etc/info-dir
+fi
+
 %post
-/sbin/install-info /usr/info/gzip.info.gz /usr/info/dir --entry="* gzip: (gzip).                 The GNU compression utility."
+/sbin/install-info /usr/info/gzip.info.gz --info-dir /etc/info-dir \
+--entry \
+"* gzip: (gzip).                                 The GNU compression utility."
 
 %preun
-/sbin/install-info --delete /usr/info/gzip.info.gz /usr/info/dir --entry="* gzip: (gzip).                 The GNU compression utility."
+/sbin/install-info --delete /usr/info/gzip.info.gz --info-dir /etc/info-dir
 
 %files
 %defattr (644, root, root, 755)
@@ -85,9 +110,18 @@ EOF
 %attr(755, root, root) /bin/*
 %attr(755, root, root) /usr/bin/*
 %attr(644, root,  man) /usr/man/man1/*
+%lang(pl) %attr(644, root,  man) /usr/man/pl/man1/*
 /usr/info/gzip.info*
 
 %changelog
+* Sat Dec 12 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.4-14]
+- added gzipping man pages,
+- added using LDFLAGS="-s" to ./configure enviroment,
+- added some pl man pages: gzip(1), zcmp(1), zdiff(1), zforce(1),
+  zgrep(1), zmore(1), znew(1),
+- standarized {un}registering info pages.
+
 * Thu Sep 24 1998 Andrzej Nakonieczny <dzemik@shadow.eu.org>
   [1.2.4-13]
 - added pl translation,
