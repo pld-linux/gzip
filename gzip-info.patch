@@ -8,7 +8,7 @@ diff -Nru gzip-1.2.4/gzip.texi gzip-1.2.4.new/gzip.texi
 +@ifinfo
 +@dircategory File utilities:
 +@direntry
-+* gzip: (gzip)				The GNU compression utility
++* gzip: (gzip).				The GNU compression utility
 +@end direntry
 +@end ifinfo
 +
