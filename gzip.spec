@@ -9,7 +9,7 @@ Release:	20
 License:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
-Source:		ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
+Source0:	ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
 Patch0:		gzip-basename.patch
 Patch1:		gzip-gzexe.patch
 Patch2:		gzip-mktemp.patch
@@ -19,21 +19,23 @@ Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This is the popular GNU file compression and decompression program, gzip.
+This is the popular GNU file compression and decompression program,
+gzip.
 
 %description -l de
-Dies ist das beliebte GNU-Dateikompressions- und Dekompressionsprogramm,
-gzip.
+Dies ist das beliebte GNU-Dateikompressions- und
+Dekompressionsprogramm, gzip.
 
 %description -l fr
 Programme de compression et de décompression gzip de GNU
 
 %description -l pl
-GNU gzip to popularny program s³u¿±cy do kompresji i dekompresji danych.
+GNU gzip to popularny program s³u¿±cy do kompresji i dekompresji
+danych.
 
 %description -l tr
-gzip, Unix iþletim sistemlerinde çok yaygýn olarak kullanýlan bir dosya
-sýkýþtýrma ve açma aracýdýr.
+gzip, Unix iþletim sistemlerinde çok yaygýn olarak kullanýlan bir
+dosya sýkýþtýrma ve açma aracýdýr.
 
 %prep
 %setup  -q
