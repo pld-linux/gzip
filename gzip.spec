@@ -94,6 +94,8 @@ ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+mkdir $RPM_BUILD_ROOT%{_mandir}/pt/man1/
+mv $RPM_BUILD_ROOT%{_mandir}/pt/*.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
