@@ -19,6 +19,7 @@ Patch6:		%{name}-zgreppipe.patch
 Patch7:		%{name}-noppid.patch
 Patch8:		%{name}-ac_fix.patch
 Patch9:		%{name}-cpp_macros.patch
+Patch10:	%{name}-ac.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 Requires:	mktemp
@@ -54,6 +55,7 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
 aclocal
