@@ -1,28 +1,29 @@
-Summary:     GNU gzip file compression
-Summary(de): Dateikomprimierung GNU-gzip
-Summary(fr): GNU gzip pour la compression de fichiers.
-Summary(pl): GNU gzip
-Summary(tr): GNU gzip dosya sýkýþtýrma aracý
-Name:        gzip
-Version:     1.2.4
-Release:     15
-Copyright:   GPL
-Group:       Utilities/Archiving
-Source0:     ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
-Source1:     gzip.1.pl
-Source2:     zcmp.1.pl
-Source3:     zdiff.1.pl
-Source4:     zforce.1.pl
-Source5:     zgrep.1.pl
-Source6:     zmore.1.pl
-Source7:     znew.1.pl
-Patch0:      gzip-basename.patch
-Patch1:      gzip-gzexe.patch
-Patch2:      gzip-mktemp.patch
-Patch3:      gzip-info.patch
-Prereq:      /sbin/install-info
-Requires:    mktemp
-Buildroot:   /tmp/%{name}-%{version}-root
+Summary:	GNU gzip file compression
+Summary(de):	Dateikomprimierung GNU-gzip
+Summary(fr):	GNU gzip pour la compression de fichiers.
+Summary(pl):	GNU gzip
+Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
+Name:		gzip
+Version:	1.2.4
+Release:	16
+Copyright:	GPL
+Group:		Utilities/Archiving
+Group(pl):	Narzêdzia/Archiwizacja
+Source0:	ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
+Source1:	gzip.1.pl
+Source2:	zcmp.1.pl
+Source3:	zdiff.1.pl
+Source4:	zforce.1.pl
+Source5:	zgrep.1.pl
+Source6:	zmore.1.pl
+Source7:	znew.1.pl
+Patch0:		gzip-basename.patch
+Patch1:		gzip-gzexe.patch
+Patch2:		gzip-mktemp.patch
+Patch3:		gzip-info.patch
+Prereq:		/sbin/install-info
+Requires:	mktemp
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 This is the popular GNU file compression and decompression
@@ -66,6 +67,7 @@ make install prefix=$RPM_BUILD_ROOT/usr
 
 mv -f $RPM_BUILD_ROOT/usr/bin/gzip $RPM_BUILD_ROOT/bin/gzip
 rm -f $RPM_BUILD_ROOT/usr/bin/gunzip $RPM_BUILD_ROOT/usr/bin/zcat
+
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/gunzip
 ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/zcat
 ln -sf /bin/gzip $RPM_BUILD_ROOT/usr/bin/gzip
@@ -91,6 +93,7 @@ install %{SOURCE6} $RPM_BUILD_ROOT/usr/man/pl/man1/zmore.1
 install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
 
 gzip -9nf $RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
+bzip2 -9 NEWS README
 
 %post
 /sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
@@ -101,12 +104,15 @@ if [ $1 = 0 ]; then
 fi
 
 %files
-%defattr (644, root, root, 755)
-%doc NEWS README
-%attr(755, root, root) /bin/*
-%attr(755, root, root) /usr/bin/*
-%attr(644, root,  man) /usr/man/man1/*
-%lang(pl) %attr(644, root,  man) /usr/man/pl/man1/*
+%defattr(644,root,root,755)
+%doc {NEWS,README}.bz2
+
+%attr(755,root,root) /bin/*
+%attr(755,root,root) /usr/bin/*
+%attr(644,root, man) /usr/man/man1/*
+
+%lang(pl) %attr(644,root,man) /usr/man/pl/man1/*
+
 /usr/info/gzip.info*
 
 %changelog
@@ -128,25 +134,5 @@ fi
 - added pl translation,
 - changed buildroot for /tmp/%{name}-%{version}-root,
 - added %%{name} and %%{version} macros in Source.
-- added %defattr support.
-
-* Thu May 07 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Thu Apr 09 1998 Cristian Gafton <gafton@redhat.com>
-- added /usr/bin/gzip and /usr/bin/gunzip symlinks as some programs are too
-  brain dead to figure out they should be at least trying to use $PATH
-- added BuildRoot
-
-* Wed Jan 28 1998 Erik Troan <ewt@redhat.com>
-- fix /tmp races
-
-* Sun Sep 14 1997 Erik Troan <ewt@redhat.com>
-- uses install-info
-- applied patch for gzexe
-
-* Mon Jun 02 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
-
-* Tue Apr 22 1997 Marc Ewing <marc@redhat.com>
-- (Entry added for Marc by Erik) fixed gzexe to use /bin/gzip
+- added %defattr support,
+- start at RH spec.
