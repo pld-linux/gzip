@@ -81,23 +81,23 @@ cat > $RPM_BUILD_ROOT/usr/bin/zless <<EOF
 /bin/zcat "\$@" | /usr/bin/less
 EOF
 
-install %{SOURCE1} $RPM_BUILD_ROOT/usr/man/pl/man1/gzip.1
-install %{SOURCE2} $RPM_BUILD_ROOT/usr/man/pl/man1/zcmp.1
-install %{SOURCE3} $RPM_BUILD_ROOT/usr/man/pl/man1/zdiff.1
-install %{SOURCE4} $RPM_BUILD_ROOT/usr/man/pl/man1/zforce.1
-install %{SOURCE5} $RPM_BUILD_ROOT/usr/man/pl/man1/zgrep.1
-install %{SOURCE6} $RPM_BUILD_ROOT/usr/man/pl/man1/zmore.1
-install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/gzip.1
+install %{SOURCE2} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zcmp.1
+install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zdiff.1
+install %{SOURCE4} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zforce.1
+install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zgrep.1
+install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/zmore.1
+install %{SOURCE7} $RPM_BUILD_ROOT%{_mandir}/pl/man1/znew.1
 
 gzip -9nf NEWS README \
 	$RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
 
 %post
-/sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
+/sbin/install-info %{_infodir}/gzip.info.gz /etc/info-dir
 
 %preun
 if [ "$1" = "0" ]; then
-	/sbin/install-info --delete /usr/info/gzip.info.gz /etc/info-dir
+	/sbin/install-info --delete %{_infodir}/gzip.info.gz /etc/info-dir
 fi
 
 %clean
@@ -110,10 +110,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/*
 %attr(755,root,root) /usr/bin/*
 
-/usr/man/man1/*
-%lang(pl) /usr/man/pl/man1/*
+%{_mandir}/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
 
-/usr/info/gzip.info*
+%{_infodir}/gzip.info*
 
 %changelog
 * Mon Apr 19 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
