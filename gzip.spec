@@ -90,19 +90,15 @@ install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
 
 gzip -9nf $RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
 
-%pre
-if [ $1 = 1 ]; then
-        /sbin/install-info --delete /usr/info/gzip.info.gz \
-	--info-dir /etc/info-dir
-fi
-
 %post
-/sbin/install-info /usr/info/gzip.info.gz --info-dir /etc/info-dir \
+/sbin/install-info /usr/info/gzip.info.gz /etc/info-dir \
 --entry \
 "* gzip: (gzip).                                 The GNU compression utility."
 
 %preun
-/sbin/install-info --delete /usr/info/gzip.info.gz --info-dir /etc/info-dir
+if [ $1 = 1 ]; then
+	/sbin/install-info --delete /usr/info/gzip.info.gz /etc/info-dir
+fi
 
 %files
 %defattr (644, root, root, 755)
