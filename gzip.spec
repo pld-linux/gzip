@@ -1,20 +1,20 @@
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
-Summary(fr):	GNU gzip pour la compression de fichiers.
+Summary(fr):	GNU gzip pour la compression de fichiers
 Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
-Version:	1.2.4
-Release:	20
+Version:	1.3
+Release:	4
 License:	GPL
 Group:		Utilities/Archiving
 Group(pl):	Narzêdzia/Archiwizacja
-Source0:	ftp://alpha.gnu.org/gnu/%{name}-%{version}.tar.gz
-Patch0:		gzip-basename.patch
-Patch1:		gzip-gzexe.patch
-Patch2:		gzip-mktemp.patch
-Patch3:		gzip-info.patch
-Patch4:		gzip-plman.patch
+Source0:	ftp://alpha.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
+Patch0:		gzip-mktemp.patch
+Patch1:		gzip-info.patch
+Patch2:		gzip-plman.patch
+Patch3:		gzip-zforce.patch
+Patch4:		gzip-DESTDIR.patch
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,23 +46,22 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch4 -p1
 
 %build
+automake
+LDFLAGS="-s"; export LDFLAGS
 %configure
-make LDFLAGS="-s"
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{bin,%{_mandir}/pl/man1}
+install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pl/man1}
 
-make install prefix=$RPM_BUILD_ROOT%{_prefix} \
-	bindir=$RPM_BUILD_ROOT/%{_bindir} \
-	mandir=$RPM_BUILD_ROOT/%{_mandir}/man1 \
-	infodir=$RPM_BUILD_ROOT/%{_infodir}
+make install DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin/gzip
+mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
 rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
 
-ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/gunzip
-ln -sf /bin/gzip $RPM_BUILD_ROOT/bin/zcat
+ln -sf gzip $RPM_BUILD_ROOT/bin/gunzip
+ln -sf gzip $RPM_BUILD_ROOT/bin/zcat
 ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
@@ -71,11 +70,6 @@ for i in zcmp zdiff zforce zgrep zmore znew ; do
 	rm -f $RPM_BUILD_ROOT%{_bindir}/$i
 	mv $RPM_BUILD_ROOT%{_bindir}/.$i $RPM_BUILD_ROOT%{_bindir}/$i
 done
-
-cat > $RPM_BUILD_ROOT%{_bindir}/zless <<EOF
-#!/bin/sh
-/bin/zcat "\$@" | %{_bindir}/less
-EOF
 
 install pl/*.1 $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
