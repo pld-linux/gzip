@@ -5,7 +5,7 @@ Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
 Version:	1.3
-Release:	8
+Release:	13
 License:	GPL
 Group:		Applications/Archiving
 Group(de):	Applikationen/Archivierung
@@ -16,6 +16,8 @@ Patch1:		%{name}-info.patch
 Patch2:		%{name}-plman.patch
 Patch3:		%{name}-zforce.patch
 Patch4:		%{name}-DESTDIR.patch
+Patch5:		%{name}-stderr.patch
+Patch6:		%{name}-zgreppipe.patch
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,6 +47,8 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 aclocal
