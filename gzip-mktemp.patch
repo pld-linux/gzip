@@ -1,18 +1,17 @@
---- gzip-1.2.4/gzexe.in.ewt	Wed Jan 28 15:30:41 1998
-+++ gzip-1.2.4/gzexe.in	Wed Jan 28 15:37:14 1998
-@@ -90,18 +90,22 @@
-   if test $decomp -eq 0; then
-     sed 1q $0 > $tmp
-     sed "s|^if tail|if $tail|" >> $tmp <<'EOF'
--skip=18
--if tail +$skip $0 | "/bin"/gzip -cd > /tmp/gztmp$$; then
--  /bin/chmod 700 /tmp/gztmp$$
-+skip=22
+--- gzip-1.3/gzexe.in.gzexe	Fri Sep 18 00:43:06 1998
++++ gzip-1.3/gzexe.in	Mon Mar 20 10:28:02 2000
+@@ -94,18 +94,22 @@
+ set -C
+ umask=`umask`
+ umask 77
+-if tail +$skip $0 | "BINDIR"/gzip -cd > /tmp/gztmp$$; then
 +tmpfile=`mktemp /tmp/gz$$.XXXXXX` || {
-+	echo 'cannot create a temporary file' >&2
++	echo 'cannot create temporary file' >&2
 +	exit 1
 +}
 +if tail +$skip $0 | "/bin"/gzip -cd > $tmpfile; then
+   umask $umask
+-  /bin/chmod 700 /tmp/gztmp$$
 +  /bin/chmod 700 $tmpfile
    prog="`echo $0 | /bin/sed 's|^.*/||'`"
 -  if /bin/ln /tmp/gztmp$$ "/tmp/$prog" 2>/dev/null; then
@@ -32,12 +31,3 @@
    fi
  else
    echo Cannot decompress $0; exit 1
-@@ -116,7 +120,7 @@
- 
-   else
-     # decompression
--    skip=18
-+    skip=22
-     if sed -e 1d -e 2q "$i" | grep "^skip=[0-9]*$" >/dev/null; then
-       eval `sed -e 1d -e 2q "$i"`
-     fi
