@@ -2,7 +2,9 @@ Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
 Summary(fr):	GNU gzip pour la compression de fichiers
 Summary(pl):	GNU gzip
+Summary(ru):	Программа сжатия данных GNU gzip
 Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
+Summary(uk):	Програма компрес╕╖ даних GNU gzip
 Name:		gzip
 Version:	1.3.3
 Release:	1
@@ -20,7 +22,7 @@ Patch3:		%{name}-stderr.patch
 Patch4:		%{name}-zgreppipe.patch
 Patch5:		%{name}-noppid.patch
 Patch6:		%{name}-cpp_macros.patch
-Patch7:         %{name}-ac.patch
+Patch7:		%{name}-ac.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -42,9 +44,17 @@ Programme de compression et de dИcompression gzip de GNU
 GNU gzip to popularny program sЁu©╠cy do kompresji i dekompresji
 danych.
 
+%description -l ru
+Пакет gzip содержит популярную программу сжатия данных GNU gzip.
+Сжатые ею файлы имеют расширение .gz.
+
 %description -l tr
 gzip, Unix iЧletim sistemlerinde Гok yaygЩn olarak kullanЩlan bir
 dosya sЩkЩЧtЩrma ve aГma aracЩdЩr.
+
+%description -l uk
+Пакет gzip м╕стить популярну програму компрес╕╖ даних GNU gzip.
+Оброблен╕ нею файли мають розширення .gz.
 
 %prep
 %setup  -q
