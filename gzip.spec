@@ -56,9 +56,6 @@ CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 	--prefix=/usr
 make
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{bin,usr/man/pl/man1}
@@ -95,6 +92,8 @@ install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
 gzip -9nf NEWS README \
 	$RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
 
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
