@@ -92,8 +92,9 @@ install %{SOURCE5} $RPM_BUILD_ROOT/usr/man/pl/man1/zgrep.1
 install %{SOURCE6} $RPM_BUILD_ROOT/usr/man/pl/man1/zmore.1
 install %{SOURCE7} $RPM_BUILD_ROOT/usr/man/pl/man1/znew.1
 
-gzip -9nf $RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
-bzip2 -9 NEWS README
+gzip -9nf NEWS README \
+	$RPM_BUILD_ROOT/usr/{info/gzip.info*,man/{man1/*,pl/man1/*}}
+
 
 %post
 /sbin/install-info /usr/info/gzip.info.gz /etc/info-dir
@@ -105,13 +106,13 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc {NEWS,README}.bz2
+%doc {NEWS,README}.gz
 
 %attr(755,root,root) /bin/*
 %attr(755,root,root) /usr/bin/*
-%attr(644,root, man) /usr/man/man1/*
+%attr(644,root,root) /usr/man/man1/*
 
-%lang(pl) %attr(644,root,man) /usr/man/pl/man1/*
+%lang(pl) /usr/man/pl/man1/*
 
 /usr/info/gzip.info*
 
