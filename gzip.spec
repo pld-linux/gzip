@@ -17,7 +17,7 @@ Group:		Applications/Archiving
 # not present at the moment, but can be found on alpha.gnu mirrors
 Source0:	ftp://alpha.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
 # Source0-md5:	3d6c191dfd2bf307014b421c12dc8469
-Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
