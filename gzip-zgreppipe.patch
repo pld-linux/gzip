@@ -4,7 +4,7 @@
  fi
  
  res=0
-+trap break SIGPIPE
++trap break PIPE
  for i do
    if test $list -eq 1; then
      gzip -cdfq "$i" | $grep $opt "$pat" > /dev/null && echo $i
@@ -14,5 +14,5 @@
    test "$r" -ne 0 && res="$r"
 +  echo
  done
-+trap - SIGPIPE
++trap - PIPE
  exit $res
