@@ -96,7 +96,7 @@ znaku na lewo od pierwszej kolumny spowoduje anulowanie polecenia wyszukiwania.
 znajd¼ \fIi\|\fP\-te wyst±pienie ostatnio wprowadzonego wzorca
 .PP
 .IP !polecenie
-wywo³aj shell z \fIpoleceniem\|\fP. Znak `!' w "poleceniu" jest zastêpowany
+wywo³aj pow³okê z \fIpoleceniem\|\fP. Znak `!' w "poleceniu" jest zastêpowany
 poprzednio wprowadzonym poleceniem. Aby w poleceniu u¿yæ znaku `!', wprowad¼
 `\\!'
 .PP
