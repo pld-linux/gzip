@@ -12,13 +12,11 @@ Source0:	ftp://ftp.gnu.org/pub/gnu/gzip/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
-Patch3:		%{name}-zforce.patch
-Patch4:		%{name}-DESTDIR.patch
-Patch5:		%{name}-stderr.patch
-Patch6:		%{name}-zgreppipe.patch
-Patch7:		%{name}-noppid.patch
-Patch8:		%{name}-ac_fix.patch
-Patch9:		%{name}-cpp_macros.patch
+Patch2:		%{name}-zforce.patch
+Patch3:		%{name}-stderr.patch
+Patch4:		%{name}-zgreppipe.patch
+Patch5:		%{name}-noppid.patch
+Patch6:		%{name}-cpp_macros.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 Requires:	mktemp
@@ -47,13 +45,11 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 %patch3 -p1
-#%patch4 -p1
+%patch4 -p0
 %patch5 -p1
-%patch6 -p0
-%patch7 -p1
-#%patch8 -p1
-%patch9 -p1
+%patch6 -p1
 
 %build
 aclocal
