@@ -4,23 +4,25 @@ Summary(fr):	GNU gzip pour la compression de fichiers
 Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
-Version:	1.3
-Release:	19
+Version:	1.3.3
+Release:	1
 License:	GPL
 Group:		Applications/Archiving
-Source0:	ftp://ftp.gnu.org/pub/gnu/gzip/%{name}-%{version}.tar.gz
+# 1.2.x versions only
+#Source0:	ftp://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
+# not present at the moment, but can be found on alpha.gnu mirrors
+Source0:	ftp://alpha.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
-Patch3:		%{name}-zforce.patch
-Patch4:		%{name}-DESTDIR.patch
-Patch5:		%{name}-stderr.patch
-Patch6:		%{name}-zgreppipe.patch
-Patch7:		%{name}-noppid.patch
-Patch8:		%{name}-ac_fix.patch
-Patch9:		%{name}-cpp_macros.patch
-Patch10:	%{name}-ac.patch
-BuildRequires:	autoconf
+Patch2:		%{name}-zforce.patch
+Patch3:		%{name}-stderr.patch
+Patch4:		%{name}-zgreppipe.patch
+Patch5:		%{name}-noppid.patch
+Patch6:		%{name}-cpp_macros.patch
+Patch7:         %{name}-ac.patch
+URL:		http://www.gnu.org/software/gzip/
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,19 +50,17 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 %patch3 -p1
-%patch4 -p1
+%patch4 -p0
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
+%patch7 -p0
 
 %build
 aclocal
 %{__autoconf}
-automake -a -i -c -f
+%{__automake} -i
 %configure
 %{__make}
 
@@ -80,7 +80,8 @@ ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-gzip -9nf NEWS README
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
@@ -88,12 +89,9 @@ gzip -9nf NEWS README
 %postun
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc NEWS README
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
