@@ -4,8 +4,8 @@ Summary(fr):	GNU gzip pour la compression de fichiers
 Summary(pl):	GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Name:		gzip
-Version:	1.3
-Release:	19
+Version:	1.3.3
+Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	ftp://ftp.gnu.org/pub/gnu/gzip/%{name}-%{version}.tar.gz
@@ -48,11 +48,11 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
-%patch4 -p1
+#%patch4 -p1
 %patch5 -p1
-%patch6 -p1
+%patch6 -p0
 %patch7 -p1
-%patch8 -p1
+#%patch8 -p1
 %patch9 -p1
 
 %build
