@@ -8,8 +8,6 @@ Version:	1.3
 Release:	19
 License:	GPL
 Group:		Applications/Archiving
-Group(de):	Applikationen/Archivierung
-Group(pl):	Aplikacje/Archiwizacja
 Source0:	ftp://ftp.gnu.org/pub/gnu/gzip/%{name}-%{version}.tar.gz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/gzip-non-english-man-pages.tar.bz2
 Patch0:		%{name}-mktemp.patch
