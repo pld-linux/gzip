@@ -15,7 +15,6 @@ Patch1:		gzip-gzexe.patch
 Patch2:		gzip-mktemp.patch
 Patch3:		gzip-info.patch
 Patch4:		gzip-plman.patch
-Prereq:		/usr/sbin/fix-info-dir
 Requires:	mktemp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -82,10 +81,10 @@ gzip -9nf NEWS README \
 	$RPM_BUILD_ROOT{%{_infodir}/gzip.info*,%{_mandir}/{man1/*,pl/man1/*}}
 
 %post
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %postun
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
