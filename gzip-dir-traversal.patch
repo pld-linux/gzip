@@ -1,0 +1,34 @@
+A directory traversal bug exists in multiple versions of gzip. When
+compressing a file, gzip saves its original name but not its path inside
+the compressed file. When using gunzip's "-N" option, the original name
+found inside the compressed file will be used as the name to save the
+decompressed file with. "gunzip -N" doesn't check if the original name inside
+the compressed file has any "/" characters in it. This makes it possible to
+create a malicious compressed file that when decompressed with "gunzip -N"
+will create a file at an arbitrary location in the file system, such as
+"/etc/nologin" or "/etc/cron.d/evil".
+
+The command "gunzip -N" prints no output during normal operation, so the
+user will not get any warning! The command "gunzip -Nv" prints information
+about what file it is creating where, but then it may be too late.
+
+The gunzip command always asks before overwriting existing files, so this
+bug only allows for creating new files and not overwriting old ones.
+
+This bug has some limited security implications. It allows attackers to create
+arbitrary files with arbitrary contents on a system, if they can get a user or
+a program with sufficient rights to decompress a .gz file from the attackers
+with "gunzip -N".
+
+--- gzip-1.3.5/gzip.c.orig	2002-09-28 09:38:43.000000000 +0200
++++ gzip-1.3.5/gzip.c	2005-04-20 23:14:45.000000000 +0200
+@@ -927,6 +927,9 @@
+ 	}
+ 	/* Create the output file */
+ 	remove_ofname = 1;
++	char* baseout = base_name(ofname);
++	strncpy(ofname, baseout, sizeof(ofname));
++	ofname[sizeof(ofname) - 1] = '\0';
+ 	ofd = OPEN(ofname, flags, RW_USER);
+ 	if (ofd == -1) {
+ 	    progerror(ofname);
