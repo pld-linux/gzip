@@ -9,7 +9,7 @@ Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -25,6 +25,7 @@ Patch2:		%{name}-stderr.patch
 Patch3:		%{name}-zgreppipe.patch
 Patch4:		%{name}-noppid.patch
 Patch5:		%{name}-segfault.patch
+Patch6:		%{name}-dir-traversal.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -77,6 +78,7 @@ dosya sýkýþtýrma ve açma aracýdýr.
 # this fixes reading "window" array out of bounds (sometimes causing
 # producing of little bigger .gz files, but I couldn't find better fix)
 %patch5 -p1
+%patch6 -p1
 
 %build
 rm -f missing
