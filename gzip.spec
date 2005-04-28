@@ -9,7 +9,7 @@ Summary(tr):	GNU gzip dosya sıkıştırma aracı
 Summary(uk):	ğÒÏÇÒÁÍÁ ËÏÍĞÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	7.1
+Release:	8
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -78,7 +78,7 @@ dosya sıkıştırma ve açma aracıdır.
 # this fixes reading "window" array out of bounds (sometimes causing
 # producing of little bigger .gz files, but I couldn't find better fix)
 %patch5 -p1
-#patch6 -p1
+%patch6 -p1
 
 %build
 rm -f missing
