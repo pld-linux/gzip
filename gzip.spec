@@ -1,3 +1,5 @@
+# TODO
+# - security http://www.gentoo.org/security/en/glsa/glsa-200505-05.xml
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
 Summary(es):	Compresor de archivos gzip GNU
