@@ -1,0 +1,3 @@
+- added ac_fix patch (quote all functions name in AC_DEFUN() in [])
+- added automake and autoconf to BuildRequires,
+- run autoconf in %build before %configure.
