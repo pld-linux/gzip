@@ -11,7 +11,7 @@ Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	8
+Release:	8.1
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -28,11 +28,13 @@ Patch3:		%{name}-zgreppipe.patch
 Patch4:		%{name}-noppid.patch
 Patch5:		%{name}-segfault.patch
 Patch6:		%{name}-dir-traversal.patch
+Patch7:		%{name}-rsyncable.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	texinfo
 Requires:	mktemp
+Provides:	gzip(rsyncable)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -81,6 +83,7 @@ dosya sýkýþtýrma ve açma aracýdýr.
 # producing of little bigger .gz files, but I couldn't find better fix)
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 rm -f missing
