@@ -1,4 +1,3 @@
-# 
 # TODO
 # - SECURITY: CVE-2005-0988, CVE-2005-1228
 #
@@ -13,7 +12,7 @@ Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
 Summary(uk):	Програма компрес╕╖ даних GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	8.2
+Release:	9
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
