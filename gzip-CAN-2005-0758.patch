@@ -1,5 +1,12 @@
 --- zgrep.in
 +++ zgrep.in
+@@ -1,5 +1,5 @@
+ :
+-#!/bin/sh
++#!/bin/bash
+ 
+ # zgrep -- a wrapper around a grep program that decompresses files as needed
+ # Adapted from a version sent by Charles Levert <charles@comm.polymtl.ca>
 @@ -24,7 +24,7 @@
  
  PATH="BINDIR:$PATH"; export PATH
