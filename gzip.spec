@@ -1,6 +1,3 @@
-# TODO
-# - SECURITY: CVE-2005-0988
-#
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
 Summary(es):	Compresor de archivos gzip GNU
@@ -12,7 +9,7 @@ Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	9
+Release:	10
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -31,6 +28,7 @@ Patch5:		%{name}-segfault.patch
 Patch6:		%{name}-dir-traversal.patch
 Patch7:		%{name}-rsyncable.patch
 Patch8:		%{name}-CAN-2005-0758.patch
+Patch9:		%{name}-CVE-2005-0988.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -87,11 +85,12 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p0
+%patch9 -p1
 
 %build
-rm -f missing
 %{__aclocal} -I m4
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
