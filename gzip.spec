@@ -1,5 +1,5 @@
 # TODO
-# - SECURITY: CVE-2005-0988, CVE-2005-1228
+# - SECURITY: CVE-2005-0988
 #
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
