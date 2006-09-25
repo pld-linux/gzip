@@ -9,7 +9,7 @@ Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
 Version:	1.3.5
-Release:	11
+Release:	12
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -29,6 +29,7 @@ Patch6:		%{name}-dir-traversal.patch
 Patch7:		%{name}-rsyncable.patch
 Patch8:		%{name}-CAN-2005-0758.patch
 Patch9:		%{name}-CVE-2005-0988.patch
+Patch10:	%{name}-CVE-2006-433x.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
