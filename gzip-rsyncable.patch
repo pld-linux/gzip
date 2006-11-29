@@ -4,9 +4,9 @@ This is pending for actual inclusion in gzip.  It is currently being
 tried out in the default gzip for Debian Sarge, and may go into the
 upstream gzip at somepoint in the not-too-distant future.
 
---- gzip-1.3.5/deflate.c	1999-10-07 23:46:28 -0700
-+++ rsyncable/deflate.c	2005-02-05 09:40:33 -0800
-@@ -122,6 +122,14 @@
+--- gzip-1.3.6/deflate.c.orig	2006-11-30 00:13:22.863409500 +0100
++++ gzip-1.3.6/deflate.c	2006-11-30 00:14:14.346627000 +0100
+@@ -135,6 +135,14 @@
  #endif
  /* Matches of length 3 are discarded if their distance exceeds TOO_FAR */
  
@@ -21,7 +21,7 @@ upstream gzip at somepoint in the not-too-distant future.
  /* ===========================================================================
   * Local data used by the "longest match" routines.
   */
-@@ -203,6 +211,8 @@
+@@ -216,6 +224,8 @@
  unsigned near good_match;
  /* Use a faster search when the previous match is longer than this */
  
@@ -30,7 +30,7 @@ upstream gzip at somepoint in the not-too-distant future.
  
  /* Values for max_lazy_match, good_match and max_chain_length, depending on
   * the desired pack level (0..9). The values given below have been tuned to
-@@ -301,6 +311,10 @@
+@@ -314,6 +324,10 @@
  #endif
      /* prev will be initialized on the fly */
  
@@ -41,7 +41,7 @@ upstream gzip at somepoint in the not-too-distant future.
      /* Set the default configuration parameters:
       */
      max_lazy_match   = configuration_table[pack_level].max_lazy;
-@@ -537,6 +551,8 @@
+@@ -550,6 +564,8 @@
          memcpy((char*)window, (char*)window+WSIZE, (unsigned)WSIZE);
          match_start -= WSIZE;
          strstart    -= WSIZE; /* we now have strstart >= MAX_DIST: */
@@ -50,7 +50,7 @@ upstream gzip at somepoint in the not-too-distant future.
  
          block_start -= (long) WSIZE;
  
-@@ -564,13 +580,46 @@
+@@ -577,13 +593,46 @@
      }
  }
  
@@ -98,7 +98,7 @@ upstream gzip at somepoint in the not-too-distant future.
  
  /* ===========================================================================
   * Processes a new input file and return its compressed length. This
-@@ -581,7 +630,7 @@
+@@ -594,7 +643,7 @@
  local off_t deflate_fast()
  {
      IPos hash_head; /* head of the hash chain */
@@ -107,7 +107,7 @@ upstream gzip at somepoint in the not-too-distant future.
      unsigned match_length = 0;  /* length of best match */
  
      prev_length = MIN_MATCH-1;
-@@ -610,6 +659,7 @@
+@@ -624,6 +673,7 @@
  
              lookahead -= match_length;
  
@@ -115,13 +115,13 @@ upstream gzip at somepoint in the not-too-distant future.
  	    /* Insert new strings in the hash table only if the match length
               * is not too large. This saves time but degrades compression.
               */
-@@ -638,9 +688,14 @@
+@@ -652,9 +702,14 @@
              /* No match, output a literal byte */
              Tracevv((stderr,"%c",window[strstart]));
              flush = ct_tally (0, window[strstart]);
 +	    RSYNC_ROLL(strstart, 1);
              lookahead--;
- 	    strstart++; 
+ 	    strstart++;
          }
 +	if (rsync && strstart > rsync_chunk_end) {
 +	    rsync_chunk_end = 0xFFFFFFFFUL;
@@ -130,7 +130,7 @@ upstream gzip at somepoint in the not-too-distant future.
          if (flush) FLUSH_BLOCK(0), block_start = strstart;
  
          /* Make sure that we always have enough lookahead, except
-@@ -713,6 +768,7 @@
+@@ -728,6 +783,7 @@
               */
              lookahead -= prev_length-1;
              prev_length -= 2;
@@ -138,7 +138,7 @@ upstream gzip at somepoint in the not-too-distant future.
              do {
                  strstart++;
                  INSERT_STRING(strstart, hash_head);
-@@ -725,24 +781,39 @@
+@@ -740,24 +796,39 @@
              match_available = 0;
              match_length = MIN_MATCH-1;
              strstart++;
@@ -182,9 +182,9 @@ upstream gzip at somepoint in the not-too-distant future.
              strstart++;
              lookahead--;
          }
---- gzip-1.3.5/gzip.c	2002-09-28 00:38:43 -0700
-+++ rsyncable/gzip.c	2005-02-05 09:40:33 -0800
-@@ -256,6 +256,7 @@
+--- gzip-1.3.6/gzip.c.orig	2006-11-20 09:40:33.000000000 +0100
++++ gzip-1.3.6/gzip.c	2006-11-30 00:15:31.387441750 +0100
+@@ -218,6 +218,7 @@
  unsigned insize;           /* valid bytes in inbuf */
  unsigned inptr;            /* index of next byte to be processed in inbuf */
  unsigned outcnt;           /* bytes in output buffer */
@@ -192,7 +192,7 @@ upstream gzip at somepoint in the not-too-distant future.
  
  struct option longopts[] =
  {
-@@ -285,6 +286,7 @@
+@@ -247,6 +248,7 @@
      {"best",       0, 0, '9'}, /* compress better */
      {"lzw",        0, 0, 'Z'}, /* make output compatible with old compress */
      {"bits",       1, 0, 'b'}, /* max number of bits per code (implies -Z) */
@@ -200,21 +200,21 @@ upstream gzip at somepoint in the not-too-distant future.
      { 0, 0, 0, 0 }
  };
  
-@@ -365,6 +367,7 @@
-  " -Z --lzw         produce output compatible with old compress",
-  " -b --bits maxbits   max number of bits per code (implies -Z)",
+@@ -329,6 +331,7 @@
+  "  -Z, --lzw         produce output compatible with old compress",
+  "  -b, --bits=BITS   max number of bits per code (implies -Z)",
  #endif
-+ "    --rsyncable   Make rsync-friendly archive",
-  " file...          files to (de)compress. If none given, use standard input.",
-  "Report bugs to <bug-gzip@gnu.org>.",
-   0};
-@@ -543,6 +546,9 @@
- #else
- 	    recursive = 1; break;
++ "      --rsyncable   make rsync-friendly archive",
+  "",
+  "With no FILE, or when FILE is -, read standard input.",
+  "",
+@@ -469,6 +472,9 @@
+ 	    recursive = 1;
  #endif
+ 	    break;
 +	case 'R':
-+	    rsync = 1; break;
-+
++	    rsync = 1;
++	    break;
  	case 'S':
  #ifdef NO_MULTIPLE_DOTS
              if (*optarg == '.') optarg++;
@@ -237,8 +237,8 @@ upstream gzip at somepoint in the not-too-distant future.
  
          /* in bits.c */
  void     bi_init    OF((file_t zipfile));
---- gzip-1.3.5/gzip.texi	2002-09-29 23:57:29 -0700
-+++ rsyncable/gzip.texi	2005-02-05 09:40:33 -0800
+--- gzip-1.3.6/doc/gzip.texi	2002-09-29 23:57:29 -0700
++++ rsyncable/doc/gzip.texi	2005-02-05 09:40:33 -0800
 @@ -334,6 +334,14 @@
  into the directory and compress all the files it finds there (or
  decompress them in the case of @code{gunzip}).
