@@ -1,4 +1,3 @@
-# FIXME: gzip -dcq abort()s on SIGPIPE (notorious when using zless)
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
 Summary(es):	Compresor de archivos gzip GNU
@@ -10,7 +9,7 @@ Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
 Summary(uk):	Програма компрес╕╖ даних GNU gzip
 Name:		gzip
 Version:	1.3.6
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
@@ -28,6 +27,7 @@ Patch4:		%{name}-noppid.patch
 Patch5:		%{name}-segfault.patch
 Patch6:		%{name}-rsyncable.patch
 Patch7:		%{name}-CVE-2006-433x.patch
+Patch8:		%{name}-raise-unblock.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.7
@@ -72,7 +72,7 @@ dosya sЩkЩЧtЩrma ve aГma aracЩdЩr.
 Оброблен╕ нею файли мають розширення .gz.
 
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -83,6 +83,7 @@ dosya sЩkЩЧtЩrma ve aГma aracЩdЩr.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 %{__aclocal} -I m4
