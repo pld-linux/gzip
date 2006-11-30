@@ -1,3 +1,4 @@
+# FIXME: gzip -dcf abort()s on SIGPIPE (notorious when using zless)
 Summary:	GNU gzip file compression
 Summary(de):	Dateikomprimierung GNU-gzip
 Summary(es):	Compresor de archivos gzip GNU
