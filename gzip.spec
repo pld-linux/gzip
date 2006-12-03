@@ -9,7 +9,7 @@ Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
 Summary(uk):	Програма компрес╕╖ даних GNU gzip
 Name:		gzip
 Version:	1.3.6
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
