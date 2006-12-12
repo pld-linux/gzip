@@ -8,15 +8,15 @@ Summary(ru):	ðÒÏÇÒÁÍÍÁ ÓÖÁÔÉÑ ÄÁÎÎÙÈ GNU gzip
 Summary(tr):	GNU gzip dosya sýkýþtýrma aracý
 Summary(uk):	ðÒÏÇÒÁÍÁ ËÏÍÐÒÅÓ¦§ ÄÁÎÉÈ GNU gzip
 Name:		gzip
-Version:	1.3.6
-Release:	0.3
+Version:	1.3.8
+Release:	0.1
 License:	GPL
 Group:		Applications/Archiving
 # 1.2.x versions only
 #Source0:	ftp://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
 # not present at the moment, but can be found on alpha.gnu mirrors
 Source0:	ftp://alpha.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
-# Source0-md5:	495b42de5748cce30dc31aa9994c51b5
+# Source0-md5:	116774b594a6d5e07fc9999f5f42ecb0
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
@@ -24,10 +24,8 @@ Patch1:		%{name}-info.patch
 Patch2:		%{name}-stderr.patch
 Patch3:		%{name}-zgreppipe.patch
 Patch4:		%{name}-noppid.patch
-Patch5:		%{name}-segfault.patch
-Patch6:		%{name}-rsyncable.patch
-Patch7:		%{name}-CVE-2006-433x.patch
-Patch8:		%{name}-raise-unblock.patch
+Patch5:		%{name}-rsyncable.patch
+Patch6:		%{name}-CVE-2006-433x.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.7
@@ -78,12 +76,8 @@ dosya sýkýþtýrma ve açma aracýdýr.
 %patch2 -p1
 %patch3 -p0
 %patch4 -p1
-# this fixes reading "window" array out of bounds (sometimes causing
-# producing of little bigger .gz files, but I couldn't find better fix)
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
 
 %build
 %{__aclocal} -I m4
