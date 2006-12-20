@@ -8,15 +8,12 @@ Summary(ru):	Программа сжатия данных GNU gzip
 Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
 Summary(uk):	Програма компрес╕╖ даних GNU gzip
 Name:		gzip
-Version:	1.3.8
+Version:	1.3.9
 Release:	0.1
 License:	GPL
 Group:		Applications/Archiving
-# 1.2.x versions only
-#Source0:	ftp://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
-# not present at the moment, but can be found on alpha.gnu mirrors
-Source0:	ftp://alpha.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
-# Source0-md5:	116774b594a6d5e07fc9999f5f42ecb0
+Source0:	ftp://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
+# Source0-md5:	7cf923b24b718c418e85a283b2260e14
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
