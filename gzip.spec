@@ -1,12 +1,12 @@
 Summary:	GNU gzip file compression
-Summary(de):	Dateikomprimierung GNU-gzip
-Summary(es):	Compresor de archivos gzip GNU
-Summary(fr):	GNU gzip pour la compression de fichiers
-Summary(pl):	GNU gzip
-Summary(pt_BR):	Compressor de arquivos gzip GNU
-Summary(ru):	Программа сжатия данных GNU gzip
-Summary(tr):	GNU gzip dosya sЩkЩЧtЩrma aracЩ
-Summary(uk):	Програма компрес╕╖ даних GNU gzip
+Summary(de.UTF-8):   Dateikomprimierung GNU-gzip
+Summary(es.UTF-8):   Compresor de archivos gzip GNU
+Summary(fr.UTF-8):   GNU gzip pour la compression de fichiers
+Summary(pl.UTF-8):   GNU gzip
+Summary(pt_BR.UTF-8):   Compressor de arquivos gzip GNU
+Summary(ru.UTF-8):   п÷я─п╬пЁя─п╟п╪п╪п╟ я│п╤п╟я┌п╦я▐ п╢п╟п╫п╫я▀я┘ GNU gzip
+Summary(tr.UTF-8):   GNU gzip dosya sд╠kд╠е÷tд╠rma aracд╠
+Summary(uk.UTF-8):   п÷я─п╬пЁя─п╟п╪п╟ п╨п╬п╪п©я─п╣я│я√я≈ п╢п╟п╫п╦я┘ GNU gzip
 Name:		gzip
 Version:	1.3.9
 Release:	0.1
@@ -35,36 +35,36 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This is the popular GNU file compression and decompression program,
 gzip.
 
-%description -l de
+%description -l de.UTF-8
 Dies ist das beliebte GNU-Dateikompressions- und
 Dekompressionsprogramm, gzip.
 
-%description -l es
-Este es el popular programa GNU de compresiСn y descompresiСn de
+%description -l es.UTF-8
+Este es el popular programa GNU de compresiцЁn y descompresiцЁn de
 archivos, gzip.
 
-%description -l fr
-Programme de compression et de dИcompression gzip de GNU
+%description -l fr.UTF-8
+Programme de compression et de dц╘compression gzip de GNU
 
-%description -l pl
-GNU gzip to popularny program sЁu©╠cy do kompresji i dekompresji
+%description -l pl.UTF-8
+GNU gzip to popularny program sе┌uе╪д┘cy do kompresji i dekompresji
 danych.
 
-%description -l pt_BR
-Este И o popular programa GNU de compressЦo e descompressЦo de
+%description -l pt_BR.UTF-8
+Este ц╘ o popular programa GNU de compressцёo e descompressцёo de
 arquivos, gzip.
 
-%description -l ru
-Пакет gzip содержит популярную программу сжатия данных GNU gzip.
-Сжатые ею файлы имеют расширение .gz.
+%description -l ru.UTF-8
+п÷п╟п╨п╣я┌ gzip я│п╬п╢п╣я─п╤п╦я┌ п©п╬п©я┐п╩я▐я─п╫я┐я▌ п©я─п╬пЁя─п╟п╪п╪я┐ я│п╤п╟я┌п╦я▐ п╢п╟п╫п╫я▀я┘ GNU gzip.
+п║п╤п╟я┌я▀п╣ п╣я▌ я└п╟п╧п╩я▀ п╦п╪п╣я▌я┌ я─п╟я│я┬п╦я─п╣п╫п╦п╣ .gz.
 
-%description -l tr
-gzip, Unix iЧletim sistemlerinde Гok yaygЩn olarak kullanЩlan bir
-dosya sЩkЩЧtЩrma ve aГma aracЩdЩr.
+%description -l tr.UTF-8
+gzip, Unix iе÷letim sistemlerinde ц╖ok yaygд╠n olarak kullanд╠lan bir
+dosya sд╠kд╠е÷tд╠rma ve aц╖ma aracд╠dд╠r.
 
-%description -l uk
-Пакет gzip м╕стить популярну програму компрес╕╖ даних GNU gzip.
-Оброблен╕ нею файли мають розширення .gz.
+%description -l uk.UTF-8
+п÷п╟п╨п╣я┌ gzip п╪я√я│я┌п╦я┌я▄ п©п╬п©я┐п╩я▐я─п╫я┐ п©я─п╬пЁя─п╟п╪я┐ п╨п╬п╪п©я─п╣я│я√я≈ п╢п╟п╫п╦я┘ GNU gzip.
+п·п╠я─п╬п╠п╩п╣п╫я√ п╫п╣я▌ я└п╟п╧п╩п╦ п╪п╟я▌я┌я▄ я─п╬п╥я┬п╦я─п╣п╫п╫я▐ .gz.
 
 %prep
 %setup -q
