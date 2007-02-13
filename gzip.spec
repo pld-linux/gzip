@@ -1,12 +1,12 @@
 Summary:	GNU gzip file compression
-Summary(de.UTF-8):   Dateikomprimierung GNU-gzip
-Summary(es.UTF-8):   Compresor de archivos gzip GNU
-Summary(fr.UTF-8):   GNU gzip pour la compression de fichiers
-Summary(pl.UTF-8):   GNU gzip
-Summary(pt_BR.UTF-8):   Compressor de arquivos gzip GNU
-Summary(ru.UTF-8):   Программа сжатия данных GNU gzip
-Summary(tr.UTF-8):   GNU gzip dosya sıkıştırma aracı
-Summary(uk.UTF-8):   Програма компресії даних GNU gzip
+Summary(de.UTF-8):	Dateikomprimierung GNU-gzip
+Summary(es.UTF-8):	Compresor de archivos gzip GNU
+Summary(fr.UTF-8):	GNU gzip pour la compression de fichiers
+Summary(pl.UTF-8):	GNU gzip
+Summary(pt_BR.UTF-8):	Compressor de arquivos gzip GNU
+Summary(ru.UTF-8):	Программа сжатия данных GNU gzip
+Summary(tr.UTF-8):	GNU gzip dosya sıkıştırma aracı
+Summary(uk.UTF-8):	Програма компресії даних GNU gzip
 Name:		gzip
 Version:	1.3.9
 Release:	0.1
