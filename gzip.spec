@@ -8,12 +8,12 @@ Summary(ru.UTF-8):	Программа сжатия данных GNU gzip
 Summary(tr.UTF-8):	GNU gzip dosya sıkıştırma aracı
 Summary(uk.UTF-8):	Програма компресії даних GNU gzip
 Name:		gzip
-Version:	1.3.9
+Version:	1.3.12
 Release:	0.1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	ftp://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
-# Source0-md5:	7cf923b24b718c418e85a283b2260e14
+# Source0-md5:	b5bac2d21840ae077e0217bc5e4845b1
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
@@ -71,7 +71,7 @@ dosya sıkıştırma ve açma aracıdır.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
@@ -94,10 +94,19 @@ install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1}
 mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
 rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
 
-ln -sf gzip $RPM_BUILD_ROOT/bin/gunzip
-ln -sf gzip $RPM_BUILD_ROOT/bin/zcat
+cat > $RPM_BUILD_ROOT/bin/gunzip <<'EOF'
+#!/bin/sh
+exec /bin/gzip -d "$@"
+EOF
+cat > $RPM_BUILD_ROOT/bin/zcat <<'EOF'
+#!/bin/sh
+exec /bin/gzip -cd "$@"
+EOF
 ln -sf /bin/gzip $RPM_BUILD_ROOT%{_bindir}/gzip
 ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
+
+# conflicts with ncompress
+rm -f $RPM_BUILD_ROOT%{_bindir}/uncompress
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 mv $RPM_BUILD_ROOT%{_mandir}/pt/*.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1
