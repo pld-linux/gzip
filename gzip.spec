@@ -23,6 +23,7 @@ Patch3:		%{name}-zgreppipe.patch
 Patch4:		%{name}-noppid.patch
 Patch5:		%{name}-rsyncable.patch
 Patch6:		%{name}-CVE-2006-433x.patch
+Patch7:		%{name}-futimens.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.7
@@ -75,6 +76,7 @@ dosya sıkıştırma ve açma aracıdır.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 %{__aclocal} -I m4
