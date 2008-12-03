@@ -90,13 +90,18 @@ dosya sıkıştırma ve açma aracıdır.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1}
+install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1,/etc/env.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
 rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
+
+
+cat << EOF >$RPM_BUILD_ROOT/etc/env.d/GZIP
+#GZIP="-5"
+EOF
 
 cat > $RPM_BUILD_ROOT/bin/gunzip <<'EOF'
 #!/bin/sh
@@ -129,6 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README* THANKS TODO
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
+%config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
 %{_mandir}/man1/*
 %lang(de) %{_mandir}/de/man1/*
 %lang(es) %{_mandir}/es/man1/*
