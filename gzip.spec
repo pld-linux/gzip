@@ -8,8 +8,8 @@ Summary(ru.UTF-8):	Программа сжатия данных GNU gzip
 Summary(tr.UTF-8):	GNU gzip dosya sıkıştırma aracı
 Summary(uk.UTF-8):	Програма компресії даних GNU gzip
 Name:		gzip
-Version:	1.3.12
-Release:	2
+Version:	1.3.13
+Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
@@ -23,8 +23,6 @@ Patch3:		%{name}-zgreppipe.patch
 Patch4:		%{name}-noppid.patch
 Patch5:		%{name}-rsyncable.patch
 Patch6:		%{name}-CVE-2006-433x.patch
-Patch7:		%{name}-futimens.patch
-Patch8:		%{name}-autoconf.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.7
@@ -71,14 +69,12 @@ dosya sıkıştırma ve açma aracıdır.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
 
 %build
 %{__aclocal} -I m4
