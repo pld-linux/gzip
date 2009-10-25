@@ -13,7 +13,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
-# Source0-md5:	b5bac2d21840ae077e0217bc5e4845b1
+# Source0-md5:	c54a31b93e865f6a4410b2dc64662706
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
