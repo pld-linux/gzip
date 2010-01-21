@@ -8,12 +8,12 @@ Summary(ru.UTF-8):	Программа сжатия данных GNU gzip
 Summary(tr.UTF-8):	GNU gzip dosya sıkıştırma aracı
 Summary(uk.UTF-8):	Програма компресії даних GNU gzip
 Name:		gzip
-Version:	1.3.13
+Version:	1.4
 Release:	1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	http://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.gz
-# Source0-md5:	c54a31b93e865f6a4410b2dc64662706
+# Source0-md5:	e381b8506210c794278f5527cba0e765
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
