@@ -25,7 +25,12 @@ Patch5:		%{name}-rsyncable.patch
 Patch6:		%{name}-CVE-2006-433x.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
+%if "%{pld_release}" == "ac"
 BuildRequires:	automake >= 1:1.7
+%else
+BuildRequires:	automake >= 1:1.11
+%endif
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	texinfo
 Requires:	mktemp
 Provides:	gzip(rsyncable)
@@ -76,6 +81,14 @@ dosya sıkıştırma ve açma aracıdır.
 %patch5 -p1
 %patch6 -p1
 
+%if "%{pld_release}" == "ac"
+%{__sed} -i -e '/AM_SILENT_RULES/d' configure.ac
+%{__sed} -i -e '/AM_INIT_AUTOMAKE/s,1\.11,1.10,' configure.ac
+%{__sed} -i -e '/AM_INIT_AUTOMAKE/s,dist-xz,,' configure.ac
+%{__sed} -i -e '/AM_INIT_AUTOMAKE/s,color-tests,,' configure.ac
+%{__sed} -i -e '/AM_INIT_AUTOMAKE/s,parallel-tests,,' configure.ac
+%endif
+
 %build
 %{__aclocal} -I m4
 %{__autoconf}
@@ -93,7 +106,6 @@ install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1,/etc/env.d}
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
 rm -f $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
-
 
 cat << EOF >$RPM_BUILD_ROOT/etc/env.d/GZIP
 #GZIP="-5"
@@ -115,6 +127,10 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/uncompress
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 mv $RPM_BUILD_ROOT%{_mandir}/pt/*.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1
+
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+rm -f $RPM_BUILD_ROOT%{_mandir}/README.gzip-non-english-man-pages*
+rm -f $RPM_BUILD_ROOT%{_mandir}/gzip-da_de_gzip.patch*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
