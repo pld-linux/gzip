@@ -9,36 +9,3 @@
    exit 1
  fi
  
---- gzip-1.3.6/zforce.in.orig	2006-11-20 09:40:34.000000000 +0100
-+++ gzip-1.3.6/zforce.in	2006-11-29 23:54:45.833599500 +0100
-@@ -41,7 +41,7 @@
- Report bugs to <bug-gzip@gnu.org>."
- 
- if test $# = 0; then
--  echo "$usage"
-+  echo "$usage" >&2
-   exit 1
- fi
- 
---- gzip-1.3.6/zmore.in.orig	2006-11-20 09:40:34.000000000 +0100
-+++ gzip-1.3.6/zmore.in	2006-11-29 23:55:22.423886250 +0100
-@@ -54,7 +54,7 @@
- 
- if test $# = 0; then
-     if test -t 0; then
--	echo "$usage"
-+	echo "$usage" >&2
-     else
- 	gzip -cdfq | eval ${PAGER-more}
-     fi
---- gzip-1.3.6/znew.in.orig	2006-11-20 09:40:34.000000000 +0100
-+++ gzip-1.3.6/znew.in	2006-11-29 23:55:43.157182000 +0100
-@@ -94,7 +94,7 @@
- done
- 
- if test $# -eq 0; then
--  echo "$usage"
-+  echo "$usage" >&2
-   exit 1
- fi
- 
