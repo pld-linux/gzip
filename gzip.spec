@@ -8,24 +8,21 @@ Summary(ru.UTF-8):	Программа сжатия данных GNU gzip
 Summary(tr.UTF-8):	GNU gzip dosya sıkıştırma aracı
 Summary(uk.UTF-8):	Програма компресії даних GNU gzip
 Name:		gzip
-Version:	1.6
-Release:	2
+Version:	1.7
+Release:	1
 License:	GPL v3+
 Group:		Applications/Archiving
 Source0:	http://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.xz
-# Source0-md5:	da981f86677d58a106496e68de6f8995
+# Source0-md5:	d9ae97206a703a20e6c1c868deb3eb47
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
 Patch2:		%{name}-stderr.patch
-Patch3:		%{name}-zgreppipe.patch
-Patch4:		%{name}-noppid.patch
-Patch5:		%{name}-rsyncable.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
 %if "%{pld_release}" == "ac"
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	automake >= 1:1.10
 %else
 BuildRequires:	automake >= 1:1.11
 %endif
@@ -77,9 +74,6 @@ dosya sıkıştırma ve açma aracıdır.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %if "%{pld_release}" == "ac"
 %{__sed} -i -e '/AM_SILENT_RULES/d' configure.ac
@@ -100,17 +94,13 @@ dosya sıkıştırma ve açma aracıdır.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1,/etc/env.d}
+install -d $RPM_BUILD_ROOT{/bin,%{_mandir}/pt/man1}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/gzip $RPM_BUILD_ROOT/bin
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/gunzip $RPM_BUILD_ROOT%{_bindir}/zcat
-
-cat << EOF >$RPM_BUILD_ROOT/etc/env.d/GZIP
-#GZIP="-5"
-EOF
 
 cat > $RPM_BUILD_ROOT/bin/gunzip <<'EOF'
 #!/bin/sh
@@ -127,7 +117,7 @@ ln -sf /bin/gunzip $RPM_BUILD_ROOT%{_bindir}/gunzip
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/uncompress
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-mv $RPM_BUILD_ROOT%{_mandir}/pt/*.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1
+%{__mv} $RPM_BUILD_ROOT%{_mandir}/pt/*.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1
 
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/README.gzip-non-english-man-pages*
@@ -160,7 +150,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/zless
 %attr(755,root,root) %{_bindir}/zmore
 %attr(755,root,root) %{_bindir}/znew
-%config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/GZIP
 %{_mandir}/man1/gzexe.1*
 %{_mandir}/man1/gzip.1*
 %{_mandir}/man1/gunzip.1*
