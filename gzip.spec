@@ -8,17 +8,16 @@ Summary(ru.UTF-8):	Программа сжатия данных GNU gzip
 Summary(tr.UTF-8):	GNU gzip dosya sıkıştırma aracı
 Summary(uk.UTF-8):	Програма компресії даних GNU gzip
 Name:		gzip
-Version:	1.8
+Version:	1.9
 Release:	1
 License:	GPL v3+
 Group:		Applications/Archiving
 Source0:	http://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.xz
-# Source0-md5:	f7caabb65cddc1a4165b398009bd05b9
+# Source0-md5:	9492c6ccb2239ff679a5475a7bb543ed
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
 Patch0:		%{name}-mktemp.patch
 Patch1:		%{name}-info.patch
-Patch2:		%{name}-stderr.patch
 URL:		http://www.gnu.org/software/gzip/
 BuildRequires:	autoconf >= 2.60
 %if "%{pld_release}" == "ac"
@@ -73,7 +72,6 @@ dosya sıkıştırma ve açma aracıdır.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %if "%{pld_release}" == "ac"
 %{__sed} -i -e '/AM_SILENT_RULES/d' configure.ac
