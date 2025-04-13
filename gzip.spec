@@ -70,8 +70,8 @@ dosya sıkıştırma ve açma aracıdır.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %if "%{pld_release}" == "ac"
 %{__sed} -i -e '/AM_SILENT_RULES/d' configure.ac
