@@ -1,7 +1,7 @@
 --- gzip-1.9/gzexe.in.orig	2018-06-12 20:56:23.836235854 +0200
 +++ gzip-1.9/gzexe.in	2018-06-12 21:03:07.269564583 +0200
 @@ -169,7 +169,7 @@
- if type mktemp >/dev/null 2>&1; then
+ if command -v mktemp >/dev/null 2>&1; then
    gztmpdir=`mktemp -d "${TMPDIR}gztmpXXXXXXXXX"`
  else
 -  gztmpdir=${TMPDIR}gztmp$$; mkdir $gztmpdir
