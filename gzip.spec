@@ -12,7 +12,7 @@ Version:	1.13
 Release:	1
 License:	GPL v3+
 Group:		Applications/Archiving
-Source0:	http://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.xz
+Source0:	https://ftp.gnu.org/gnu/gzip/%{name}-%{version}.tar.xz
 # Source0-md5:	d5c9fc9441288817a4a0be2da0249e29
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	ea70155215d7b7d413ff476b668bcbbd
